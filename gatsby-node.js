@@ -70,6 +70,10 @@ exports.createPages = async({ graphql, actions }) => {
   if (result.errors) {
     console.error(result.errors)
   }
+
+  let pageNumber = 0
+  const itemsPerPage = 10;
+
   
   // Access query results via object destructuring
   const wpgraphql = result.data.wpgraphql.posts.edges

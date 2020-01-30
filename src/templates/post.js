@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from "../components/seo";
 
-import Pagination from '../components/Pagination';
+// import Pagination from '../components/Pagination';
 
 
 export const postPageQuery = graphql`
@@ -42,7 +42,7 @@ const BlogPostTemplate = ({ data }) => {
         <EntryMeta name={name} avatar={avatar} date={date}/>
         <p dangerouslySetInnerHTML={{ __html: content}} />
         <EntryMeta />
-        <Pagination pageNumber={pageNumber} hasNextPage={hadNextPage} />
+        {/* <Pagination pageNumber={pageNumber} hasNextPage={hadNextPage} /> */}
       </Layout>
     )
   }
