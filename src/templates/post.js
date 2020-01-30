@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from "../components/seo";
 
+import Pagination from '../components/Pagination';
+
 
 export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
@@ -35,11 +37,12 @@ const BlogPostTemplate = ({ data }) => {
   const date = data.wpgraphql.post.date
     return (
       <Layout>
-        <SEO title="post"/>
+        <SEO title="Post"/>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
         <EntryMeta name={name} avatar={avatar} date={date}/>
         <p dangerouslySetInnerHTML={{ __html: content}} />
         <EntryMeta />
+        <Pagination pageNumber={pageNumber} hasNextPage={hadNextPage} />
       </Layout>
     )
   }

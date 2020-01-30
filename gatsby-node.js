@@ -50,10 +50,16 @@ exports.createPages = async({ graphql, actions }) => {
   {
     wpgraphql {
       posts {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+        }
         edges {
           node {
             slug
             id
+            uri
           }
         }
       }
