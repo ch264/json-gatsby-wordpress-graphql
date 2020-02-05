@@ -11,21 +11,22 @@ import EntryMeta from '../components/Shared/EntryMeta'
 const BlogIndex = ({data}) => {
 
   const posts = data.wpgraphql.posts.edges;
-
+  console.log(posts)
   return (
     <Layout>
       <SEO title="Home" />
 
       {posts.map(post => {
-        const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt;
-        const slug = post.node.slug;
-        const date = post.node.date;
+        const { postTitle, postExcerpt, slug, date } = post.node;
 
-        const name = post.node.author.name;
-        const avatar = post.node.author.avatar.url;
+        const { name, avatar } = post.node.author;;
 
         const featuredImage = post.node.featuredImage;
+
+        //  Array of 'term' objects
+        const { terms } = post.node;
+
+        console.log(terms)
         
         return (
           <div key={post.node.id} className={"post"}>
@@ -45,7 +46,7 @@ const BlogIndex = ({data}) => {
 
 export default BlogIndex;
 
-
+// Where this this being fired?
 export const AllPostQuery = graphql`
   {
     wpgraphql {
@@ -67,6 +68,16 @@ export const AllPostQuery = graphql`
             featuredImage {
               sourceUrl
               altText
+            }
+            terms {
+              ... on WPGraphQL_Category {
+                id
+                name
+              }
+              ... on WPGraphQL_Tag {
+                id
+                name
+              }
             }
           }
         }
